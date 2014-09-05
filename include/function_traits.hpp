@@ -3,6 +3,10 @@
 #ifndef __COMPILE_UTILS__FUNCTION_TRAITS_HPP__
 #define __COMPILE_UTILS__FUNCTION_TRAITS_HPP__
 
+#include <tuple>
+
+#include "remove_ith_type.hpp"
+
 namespace CompileUtils {
   template <class F> struct function_traits;
 
@@ -22,7 +26,7 @@ namespace CompileUtils {
           using type = typename std::tuple_element<N,std::tuple<Args...>>::type;
         };
 
-      using arg_tuple_type = typename clean_tuple<Args...>::type;
+      using arg_tuple_type = typename std::tuple<Args...>;
     };
 
   // member function pointer

@@ -5,13 +5,13 @@
 namespace {
   typedef int(*function_type)(float, char);
 
-  void example() {
-    printf("%d\n",
-        (CompileUtils::function_traits<function_type>::return_type) 1);
+  static_assert(std::is_same<int,
+      CompileUtils::function_traits<function_type>::return_type>::value,
+      "Incorrect return type");
 
-    std::tuple<float,char> tuple =
-      CompileUtils::function_traits<function_type>::arg_tuple_type();
+  std::tuple<float,char> tuple =
+    CompileUtils::function_traits<function_type>::arg_tuple_type();
 
-    printf("%lu\n", CompileUtils::function_traits<function_type>::arity);
-  }
+  static_assert(CompileUtils::function_traits<function_type>::arity == 2,
+      "Arity has incorrect value");
 };

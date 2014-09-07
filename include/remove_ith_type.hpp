@@ -3,6 +3,8 @@
 #ifndef __COMPILE_UTILS__REMOVE_ITH_TYPE_HPP__
 #define __COMPILE_UTILS__REMOVE_ITH_TYPE_HPP__
 
+#include <tuple>
+
 namespace CompileUtils {
   template <size_t I, class T> struct remove_ith_type { };
 

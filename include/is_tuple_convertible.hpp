@@ -22,12 +22,8 @@ namespace CompileUtils {
   template <class From, class To>
     struct is_tuple_convertible {
       static constexpr bool value =
-        is_tuple_convertible_<
-        boost::static_unsigned_min<
-        std::tuple_size<From>::value,
-        std::tuple_size<To>::value
-          >::value,
-        From, To>::value;
+        std::tuple_size<From>::value == std::tuple_size<To>::value &&
+        is_tuple_convertible_<std::tuple_size<From>::value, From, To>::value;
     };
 };
 

@@ -1,26 +1,20 @@
 #ifndef __COMPILE_UTILS__CLEAN_TUPLE_HPP__
 #define __COMPILE_UTILS__CLEAN_TUPLE_HPP__
 
-#include <type_traits>
+#include "clean_type.hpp"
 #include <tuple>
 
 namespace CompileUtils {
   template <class... Types>
     struct clean_tuple {
-      using type = std::tuple<
-        typename std::remove_const<
-        typename std::remove_reference<Types>::type
-        >::type...>;
+      using type = std::tuple<typename clean_type<Types>::type...>;
     };
 
   template <class> struct clean_tuple_from_tuple;
 
   template <class... Types>
     struct clean_tuple_from_tuple<std::tuple<Types...>> {
-      using type = std::tuple<
-        typename std::remove_const<
-        typename std::remove_reference<Types>::type
-        >::type...>;
+      using type = typename clean_tuple<Types...>::type;
     };
 };
 

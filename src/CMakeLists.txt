@@ -1,6 +1,7 @@
 add_library(compile_utils
   binary_combination.cpp
   clean_tuple.cpp
+  clean_type.cpp
   function_traits.cpp
   is_tuple_convertible.cpp
   remove_ith_type.cpp

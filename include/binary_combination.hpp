@@ -20,6 +20,13 @@ namespace CompileUtils {
 
     static constexpr bool value = binary_combination<and_, bool, vals...>::value;
   };
+
+  template <bool... vals> struct or_ {
+    template <bool v1, bool v2>
+      struct apply { static constexpr bool value = v1 || v2; };
+
+    static constexpr bool value = binary_combination<or_, bool, vals...>::value;
+  };
 };
 
 #endif
